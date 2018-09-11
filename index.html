@@ -1,0 +1,23 @@
+<!doctype html>
+<html ng-app="profileApp" ng-controller="profileCtrl">
+  <head>
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/script.js"></script>
+  </head>
+  <body>
+
+    <!-- loading and error messages -->
+    <p ng-if="isLoading && !isSaving">Loading Profile...</p>
+    <p ng-if="isSaving && !isLoading">Saving Profile...</p>
+    <p ng-if="!isLoading && isError && !isSaving">Error! {{errorMessage.error}}</p>
+
+    <!-- profile information -->
+    <div ng-if="!isLoading && profileUser">
+      <h1>Profile</h1>
+      <label>User name:</label>
+      <input type="text" name="name" ng-model="profileUser.username" ng-change="clearError()">
+      <button ng-click="updateUsername()" ng-disabled="isDisabled">save</button>
+    </div>
+
+  </body>
+</html>
